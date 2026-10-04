@@ -1,0 +1,15 @@
+@startuml
+title Two modules obtaining the shared AufPortalConfig instance
+
+participant EnrollmentModule
+participant GradesModule
+participant AufPortalConfig
+
+EnrollmentModule -> AufPortalConfig : getInstance()
+note right of AufPortalConfig : instance is null,\ncreate it
+AufPortalConfig --> EnrollmentModule : instance
+
+GradesModule -> AufPortalConfig : getInstance()
+note right of AufPortalConfig : instance exists,\nreturn the same one
+AufPortalConfig --> GradesModule : same instance
+@enduml
